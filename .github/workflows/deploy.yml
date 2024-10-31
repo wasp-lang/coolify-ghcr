@@ -103,5 +103,5 @@ jobs:
           SERVER_COOLIFY_WEBHOOK: ${{ secrets.SERVER_COOLIFY_WEBHOOK }}
           COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
         run: |
-          curl ${{ env.CLIENT_COOLIFY_WEBHOOK }} --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
-          curl ${{ env.SERVER_COOLIFY_WEBHOOK }} --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
+          curl "${{ env.CLIENT_COOLIFY_WEBHOOK }}" --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
+          curl "${{ env.SERVER_COOLIFY_WEBHOOK }}" --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
