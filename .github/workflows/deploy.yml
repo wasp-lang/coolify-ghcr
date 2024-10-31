@@ -95,13 +95,13 @@ jobs:
           tags: ${{ steps.meta-client.outputs.tags }}
           labels: ${{ steps.meta-client.outputs.labels }}
 
-      # You can get the webhook URL from the Render dashboard
-      # Put them in the repository secrets under RENDER_CLIENT_WEBHOOK_URL and RENDER_SERVER_WEBHOOK_URL
+      # You can get the webhook URLs from the Coolify dashboard
+      # Put them in the repository secrets under CLIENT_COOLIFY_WEBHOOK and SERVER_COOLIFY_WEBHOOK
       - name: Trigger Deploy Webhooks
         env:
           CLIENT_COOLIFY_WEBHOOK: ${{ secrets.CLIENT_COOLIFY_WEBHOOK }}
           SERVER_COOLIFY_WEBHOOK: ${{ secrets.SERVER_COOLIFY_WEBHOOK }}
           COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
         run: |
-          curl --request GET '${{ env.CLIENT_COOLIFY_WEBHOOK }}' --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
-          curl --request GET '${{ env.SERVER_COOLIFY_WEBHOOK }}' --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
+          curl ${{ env.CLIENT_COOLIFY_WEBHOOK }} --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
+          curl ${{ env.SERVER_COOLIFY_WEBHOOK }} --header 'Authorization: Bearer ${{ env.COOLIFY_TOKEN }}'
